@@ -233,7 +233,7 @@ namespace Js
     JavascriptString * DynamicObjectPropertyEnumerator::MoveAndGetNextNoCache(PropertyId& propertyId, PropertyAttributes * attributes)
     {
         JavascriptString* propertyString = nullptr;
-        BigPropertyIndex newIndex = this->objectIndex;
+        BigPropertyIndex newIndex = this->objectIndex;// 保存属性到达的 index，递增++
         PropertyValueInfo info;
         RecyclableObject * startingObject = this->object;
         do //遍历Enumerate的index取property，根据Enumeratetype
