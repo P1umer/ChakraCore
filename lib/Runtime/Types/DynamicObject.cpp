@@ -505,7 +505,10 @@ namespace Js
             return this->GetTypeHandler()->FindNextProperty(requestContext, index, propertyString, propertyId, attributes, this->GetType(), typeToEnumerate, flags, this, info);
         }
 #else
-        return this->GetTypeHandler()->FindNextProperty(requestContext, index, propertyString, propertyId, attributes, this->GetType(), typeToEnumerate, flags, this, info);
+        //开始引入 this->GetType;
+        //this 指针是  DynamicObject::FindNextProperty 的 callee
+        return this->GetTypeHandler()->FindNextProperty(requestContext, index, propertyString, propertyId, attributes, this->GetType(), typeToEnumerate, flags, this, info); 
+        
 #endif
     }
 
