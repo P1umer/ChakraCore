@@ -236,12 +236,12 @@ namespace Js
         BigPropertyIndex newIndex = this->objectIndex;
         PropertyValueInfo info;
         RecyclableObject * startingObject = this->object;
-        do
+        do //遍历Enumerate的index取property，根据Enumeratetype
         {
             newIndex++;
             PropertyValueInfo::ClearCacheInfo(&info);
             if (!this->object->FindNextProperty(newIndex, &propertyString, &propertyId, attributes,
-                GetTypeToEnumerate(), flags, this->scriptContext, &info)
+                GetTypeToEnumerate(), flags, this->scriptContext, &info)//GetTypeToEnumerate() 获取 init type
                 || (GetSnapShotSemantics() && PropertyIndexToPropertyEnumeration(newIndex) >= initialPropertyCount))
             {
                 // No more properties
